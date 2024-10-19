@@ -1,6 +1,7 @@
 import express from "express"
 import morgan from "morgan"
 import cors from "cors"
+import dbConnect from "./db/dbConfig.js"
 
 const app = express()
 
@@ -18,4 +19,5 @@ const PORT = 4000
 const hostname = "localhost"
 app.listen(PORT, hostname, () => {
     console.log(`server running in http://${hostname}:${PORT}`);
+    dbConnect()
 })
