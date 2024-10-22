@@ -1,6 +1,7 @@
 import express from "express"
 import userModel from "../models/userModel.js"
-import { userSignup } from "../controllers/userController.js"
+import { getUser, userLogin, userSignup } from "../controllers/userController.js"
+import { verifyToken } from "../middlewares/jwt.js"
 
 const userRouter = express.Router()
 
@@ -16,5 +17,10 @@ userRouter.get("/all", async (req, res) => { //verifying users collection
 //user Registration(signup)
 userRouter.post("/signup", userSignup)
 
+//user Login
+userRouter.post("/login", userLogin)
+
+//get user(Auth Token)
+userRouter.get("/auth", verifyToken, getUser)
 
 export default userRouter
