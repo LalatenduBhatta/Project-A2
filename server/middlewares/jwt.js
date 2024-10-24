@@ -9,8 +9,12 @@ export const verifyToken = async (req, res, next) => {
         if (authToken) {
             try {
                 const { id } = jwt.verify(authToken, secretKey)
-                req.id = id
-                next()
+                if (id) {
+                    req.id = id
+                    next()
+                } else {
+                    return res.status(400).send({ error: "User Id not valid" })
+                }
             } catch (error) {
                 return res.status(400).send({ error: "Token verification failed" })
             }

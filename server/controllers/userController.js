@@ -20,7 +20,6 @@ export const userSignup = async (req, res) => {
     }
 }
 
-
 export const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -55,3 +54,35 @@ export const getUser = async (req, res) => {
         return res.status(500).send({ error: "Internal Server Error", msg: error.message })
     }
 }
+
+export const updateUser = async (req, res) => {
+    try {
+        const { id } = req
+        const data = req.body
+        delete data.password
+        delete data.email
+        let response = await userModel.findByIdAndUpdate(id, { $set: { ...data } })
+        if (response) {
+            return res.status(200).send({ message: "User Data Updated" })
+        } else {
+            return res.status(400).send({ error: "User not found" })
+        }
+    } catch (error) {
+        return res.status(500).send({ error: "internal server error", msg: error.message })
+    }
+}
+
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req
+        const response = await userModel.findByIdAndDelete(id)
+        if (response) {
+            return res.status(200).send({ message: "User Data Deleted" })
+        } else {
+            return res.status(400).send({ error: "User Not Found" })
+        }
+    } catch (error) {
+        return res.status(500).send({ error: "Internal server error", msg: error.message })
+    }
+}
+
