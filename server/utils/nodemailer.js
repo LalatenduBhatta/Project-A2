@@ -14,12 +14,12 @@ export const sendOtpMail = async (to, otp) => {
         const mailOptions = {
             from: process.env.EMAIL_ADD,
             to,
-            sub: "OTP FROM THE MERN PROJECT",
+            subject: "OTP FROM THE MERN PROJECT",
             text: `Hey, the otp of MERN Project is ${otp} will expire in 5min.
             Don't share your otp with unknown resources`
         }
         await transport.sendMail(mailOptions)
     } catch (error) {
-        return new Error("Error while sending Mail")
+        throw new Error("error while sending otp mail " + error.message)
     }
 }
