@@ -86,3 +86,14 @@ export const deleteUser = async (req, res) => {
     }
 }
 
+export const changePassword = async (req, res) => {
+    try {
+        const { id } = req
+        const { newPassword } = req.body
+        let hasedPassword = await createHashPassword(newPassword)
+        await userModel.findByIdAndUpdate(id, { $set: { password: hasedPassword } })
+        return res.status(201).send({ message: "User Password Updated" })
+    } catch (error) {
+        return res.status(500).send({ error: "Internal server error", msg: error.message })
+    }
+}

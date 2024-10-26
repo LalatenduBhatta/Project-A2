@@ -1,7 +1,7 @@
 import express from "express"
-import { deleteUser, getUser, updateUser, userLogin, userSignup } from "../controllers/userController.js"
+import { changePassword, deleteUser, getUser, updateUser, userLogin, userSignup } from "../controllers/userController.js"
 import { verifyToken } from "../middlewares/jwt.js"
-import { forgetPassword } from "../controllers/otpController.js"
+import { forgetPassword, verifyOTP } from "../controllers/otpController.js"
 
 const userRouter = express.Router()
 
@@ -25,5 +25,11 @@ userRouter.delete("/delete", verifyToken, deleteUser)
 
 //forget Password
 userRouter.post("/password", forgetPassword)
+
+//verifyOTP
+userRouter.post("/otp/verify", verifyOTP)
+
+//change Password
+userRouter.patch("/change/pass", verifyToken, changePassword)
 
 export default userRouter
