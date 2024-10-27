@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { RouterProvider } from "react-router-dom"
+import { router } from './router'
 
 function App() {
-  useEffect(() => {
-    fetch("http://localhost:4000")
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(console.log)
-  }, [])
   return (
-    <div>App</div>
+    <>
+      <RouterProvider router={router} />
+    </>
   )
 }
 
