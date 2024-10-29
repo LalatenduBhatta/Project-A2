@@ -65,7 +65,7 @@ function Login() {
             </div>
             <div className="home-btn absolute top-4 left-4">
                 <Link to={"/"}>
-                    <button className="btn btn-xs sm:btn-sm md:btn-md text-white rounded-full">
+                    <button className="btn btn-xs sm:btn-sm md:btn-md text-white rounded-full bg-slate-700 hover:bg-slate-800">
                         <MdExitToApp className='text-lg' />Home
                     </button>
                 </Link>

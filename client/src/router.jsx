@@ -5,6 +5,8 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import ErrorPage from "./pages/ErrorPage";
 import App from "./App";
+import Contact from "./pages/Contact";
+import Products from "./pages/Products";
 
 export let router = createBrowserRouter([
     {
@@ -21,13 +23,21 @@ export let router = createBrowserRouter([
                 element: <About />
             },
             {
-                path: "login",
-                element: <Login />
+                path: "contact",
+                element: <Contact />
             },
             {
-                path: "signup",
-                element: <Signup />
-            }
+                path: "products",
+                element: <Products />
+            },
         ]
     },
+    {
+        path: "login",
+        element: <Login />
+    },
+    {
+        path: "signup",
+        element: <Signup />
+    }
 ])
