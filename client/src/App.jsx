@@ -1,12 +1,22 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 
 
 function App() {
+  let data = useLocation()
+  const [auth, setAuth] = useState(false)
+  useEffect(() => {
+    const { pathname } = data
+    if (pathname == "/login" || pathname == "/signup") {
+      setAuth(true)
+    } else {
+      setAuth(false)
+    }
+  }, [data])
   return (
     <>
-      <Navbar />
+      {auth || <Navbar />}
       <Outlet />
     </>
   )

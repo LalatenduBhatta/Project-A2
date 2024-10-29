@@ -3,9 +3,9 @@ import { useRouteError } from "react-router-dom";
 export default function ErrorPage() {
     const error = useRouteError();
     console.error(error);
-
     return (
-        <div id="error-page">
+        <div id="error-page" className="flex flex-col h-screen justify-center 
+        items-center text-3xl text-yellow-50">
             <h1>Oops!</h1>
             <p>Sorry, an unexpected error has occurred.</p>
             <p>

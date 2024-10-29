@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from "axios";
 import { Link } from "react-router-dom"
+import { MdExitToApp } from "react-icons/md"
+
 
 function Login() {
     const [userData, setUserData] = useState({
@@ -60,6 +62,13 @@ function Login() {
                         Not registered? <Link to="/signup" className="text-blue-700 hover:underline dark:text-blue-500">Create account</Link>
                     </div>
                 </form>
+            </div>
+            <div className="home-btn absolute top-4 left-4">
+                <Link to={"/"}>
+                    <button className="btn btn-xs sm:btn-sm md:btn-md text-white rounded-full">
+                        <MdExitToApp className='text-lg' />Home
+                    </button>
+                </Link>
             </div>
         </main>
     )
