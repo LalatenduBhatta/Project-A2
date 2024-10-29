@@ -3,22 +3,31 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
+import ErrorPage from "./pages/ErrorPage";
+import App from "./App";
 
 export let router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                index: true,
+                element: <Home />
+            },
+            {
+                path: "about",
+                element: <About />
+            },
+            {
+                path: "login",
+                element: <Login />
+            },
+            {
+                path: "signup",
+                element: <Signup />
+            }
+        ]
     },
-    {
-        path: "/about",
-        element: <About />
-    },
-    {
-        path: "/login",
-        element: <Login />
-    },
-    {
-        path: "/signup",
-        element: <Signup />
-    }
 ])
