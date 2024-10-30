@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import axios from "axios";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { MdExitToApp } from "react-icons/md"
+import { useAuth } from '../../contexts/AuthContext';
 
 
 function Login() {
+    const { auth, setAuth } = useAuth()
     const [userData, setUserData] = useState({
         email: "",
         password: ""
     })
+    const navigate = useNavigate()
     const handelChange = (e) => {
         let name = e.target.name;
         let value = e.target.value.trim()
@@ -18,7 +21,13 @@ function Login() {
         e.preventDefault()
         if (userData.email && userData.password) {
             axios.post("http://localhost:4000/user/login", userData)
-                .then(res => console.log(res))
+                .then(res => {
+                    // console.log(res);
+                    if (res.status == 200) {
+                        setAuth({ isLogin: true, token: res.data.token })
+                        navigate("/")
+                    }
+                })
                 .catch(error => console.log(error))
         } else {
             alert("Provide all fields")
